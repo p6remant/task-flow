@@ -84,7 +84,7 @@ export interface BoardState {
 
 export const useBoardStore = create<BoardState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       nextIssueNumber: 13,
       tasksById: defaultBoard.tasksById,
       columns: defaultBoard.columns,
@@ -150,7 +150,7 @@ export const useBoardStore = create<BoardState>()(
           const taskToDelete = state.tasksById[taskId];
           if (!taskToDelete) return state;
 
-          const { [taskId]: removedTask, ...remainingTasks } = state.tasksById;
+          const { [taskId]: _, ...remainingTasks } = state.tasksById;
 
           return {
             tasksById: remainingTasks,
