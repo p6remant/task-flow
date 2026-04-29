@@ -20,7 +20,6 @@
 - **Zustand** keeps state simple and localized for a single-domain app (task board).
 - **Next.js** provides structure even though this is a frontend-only app.
 - **localStorage persistence** meets the requirement without introducing backend complexity.
-- The stack prioritizes **speed of development + clarity over over-engineering**.
 
 ### What we rejected (for this scope)
 
@@ -28,8 +27,6 @@
 | ------------- | ------------------------------------------------------------------- |
 | Redux Toolkit | Too much boilerplate for a single store domain                      |
 | Backend + DB  | Out of scope and time-boxed assignment                              |
-| Drag-and-drop | Not required; avoided extra complexity and accessibility edge cases |
-| React Query   | No server state exists in this app                                  |
 
 ---
 
@@ -41,30 +38,21 @@
   - Small reusable components
   - Clear separation of concerns (UI / store / logic / constants)
   - Minimal but scalable folder structure
+  - Performance optimization
 
 ---
 
-## 3. AI / tooling usage (transparency)
+## 3. AI / tooling usage
 
 This project used AI-assisted development tools:
 
-- **Cursor** → store logic scaffolding, Zustand patterns, refactoring state structure
+- **Cursor** → store logic scaffolding and Zustand patterns
 - **Gemini** → assistance in writing and refining store actions and edge-case handling
-- **ChatGPT (optional)** → documentation structuring and architecture explanation
 
 ### How AI was used
 
 - Writing and refining Zustand store logic
-- Suggesting performance optimizations (selectors, debouncing)
-- Helping structure design documentation
-- Debugging TypeScript and state update issues
-
-### Human responsibility
-
-- Final architecture decisions
-- Component design and structure
-- UI decisions and trade-offs
-- Performance considerations
+- Suggesting performance optimizations
 
 ### UI reference
 
@@ -93,7 +81,6 @@ All application state is stored in:
    - task data (`tasksById`)
    - column mapping (`columns`)
 3. `persist` middleware syncs state to `localStorage`
-4. On reload, Zustand hydrates state automatically
 
 ---
 
@@ -114,45 +101,35 @@ All application state is stored in:
 UI (React Components)
         ↓
 Zustand Store (Actions + State)
+        ↓
+localStorage (persist)        
+```
 
 ## 8. One more week — what I would improve
 
-If I had one more week, I would focus on improving scalability, data safety, and usability refinements rather than adding new features.
+If I had one more week, I would focus on extending the system toward real-world usage along with performance optimization.
 
-### 1. Performance improvements (priority: high)
+---
+### 1. System evolution (priority: high)
+- Add backend API layer for tasks (REST or similar)
+- Replace localStorage with server-based persistence
+
+Why:
+This moves the app from a local-only demo into a real-world scalable application.
+
+---
+
+### 2. Performance improvements (priority: high)
 - Add list virtualization for task rendering inside columns
-- Optimize filtering logic to avoid unnecessary full re-renders
-- Profile and reduce unnecessary Zustand subscriptions
 
 Why:
 The app is expected to handle ~1,000 tasks smoothly, and virtualization is the most impactful improvement for maintaining performance at scale.
 
 ---
 
-### 2. Persistence safety and data stability (priority: high)
-- Introduce schema versioning for persisted localStorage data
-- Add migration logic for future changes in task structure
-- Add safe fallback handling if stored JSON is corrupted
+### 3. Multi-user support (priority: medium)
+- Add user authentication
+- Enable user-wise task creation (each user has isolated tasks)
 
 Why:
-Without versioning, any future change to the Task model could break existing user data.
-
----
-
-### 3. UX and interaction improvements (priority: medium)
-- Add full keyboard shortcuts for task creation and movement
-- Improve focus management inside modals and drawers
-- Optional: add undo/redo for task actions
-
-Why:
-The app is keyboard-first as required, and improving interaction flow would make it significantly more usable.
-
----
-
-### 4. Optional extension (if time allows)
-- Add backend sync layer (REST API)
-- Enable multi-device persistence or collaboration mode
-
-Why:
-This moves the app from a local demo into a real-world collaborative tool, but it is intentionally out of scope for the current assignment.
-```
+This allows the app to evolve from a single-user tool into a multi-user system.
