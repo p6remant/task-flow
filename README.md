@@ -22,35 +22,55 @@ TaskFlow is a lightweight task tracking app inspired by Trello. It allows you to
 - Node.js 20+
 - pnpm
 
----
-
 ## Setup
 
+### 1. Clone the repository
+
+You can clone the project using either HTTPS or SSH:
+
+#### Option 1: HTTPS
 ```bash
+git clone https://github.com/p6remant/task-flow.git
+
+```
+
+#### Option 2: SSH
+```bash
+git clone git@github.com:p6remant/task-flow.git
+```
+
+### 2. Install dependencies: 
+```
 pnpm install
+```
 
-Run Development Server
+### 3. Run development server: 
+```
 pnpm dev
+```
 
-Build & Start Production
+### 4. Build application: 
+```
 pnpm build
+```
+
+### 5. Start production server: 
+```
 pnpm start
+```
 
-Code Quality
-pnpm lint
-pnpm exec tsc --noEmit
-
-Project Structure
+## Project Structure
+```
 task-flow/
 ├── public/                  Static assets
 ├── src/
 │   ├── app/                Next.js app routes and layout
 │   ├── components/
 │   │   ├── kanban/         Board, columns, cards, modals, editor
-│   │   ├── providers/      Global providers (toasts, etc.)
+│   │   ├── providers/      Global providers
 │   │   └── ui/             Reusable UI components
 │   ├── constants/          Workflow definitions and configs
-│   ├── hooks/              Custom hooks (debounce, etc.)
+│   ├── hooks/              Custom hooks
 │   ├── lib/                Utility functions and helpers
 │   ├── store/              Zustand global store
 │   └── types/              TypeScript types
@@ -58,4 +78,3 @@ task-flow/
 ├── pnpm-lock.yaml
 ├── README.md
 └── DESIGN.md
-```
