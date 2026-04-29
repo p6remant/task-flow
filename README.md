@@ -22,9 +22,16 @@ https://task-flow-drab-theta.vercel.app/
 
 ---
 
+## Additional Features
+
+- **Page not found** shows a custom 404 page for invalid routes.  
+- **Error page** displays a simple fallback UI when something goes wrong in the app.  
+- **Global loader** shows a simple loading indicator during route changes and actions.  
+- **Toast notifications** provide feedback for create, edit, and delete task actions.
+
 ## Prerequisites
 
-- Node.js 20+
+- Node.js
 - pnpm
 
 ## Setup
